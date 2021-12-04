@@ -1,4 +1,4 @@
-package trash;
+package trash.window;
 
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
@@ -8,7 +8,7 @@ public class KeyListener {
     private static KeyListener instance; // this class is a singleton
 
     public static final int N_KEYS = 350;
-    private boolean pressedKeys[] = new boolean[N_KEYS];
+    private boolean[] pressedKeys = new boolean[N_KEYS];
 
     private KeyListener() { }
 

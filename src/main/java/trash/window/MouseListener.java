@@ -1,4 +1,4 @@
-package trash;
+package trash.window;
 
 import java.util.stream.IntStream;
 

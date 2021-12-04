@@ -1,9 +1,9 @@
-package trash;
+package trash.window;
 
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
-import trash.scene.RacingScene;
+import trash.scene.MainScene;
 import trash.scene.Scene;
 import trash.scene.SceneEnum;
 import trash.util.Time;
@@ -92,8 +92,8 @@ public class Window {
     }
 
     public void setScene(SceneEnum scene) {
-        switch(scene) {
-            case RACING: currentScene = new RacingScene();
+        switch (scene) {
+            case RACING -> currentScene = new MainScene();
         }
     }
 
@@ -122,8 +122,8 @@ public class Window {
 
     // private methods
     private void loop() {
+        glClearColor(0.5f, 0.5f, 0.8f, 1.0f);
         double lastFPSTitleUpdate = Time.getTime();
-
         double frameStartTime = Time.getTime();
         while (!glfwWindowShouldClose(glfwWindow)) {
 
@@ -134,8 +134,8 @@ public class Window {
             currentScene.update(frameTime);
 
             // render
-            glClearColor(0.5f, 0.5f, 0.8f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
+            currentScene.render(frameTime);
             glfwSwapBuffers(glfwWindow);
 
             // update window title fps, if
