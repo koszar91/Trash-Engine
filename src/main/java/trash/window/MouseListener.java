@@ -9,17 +9,15 @@ public class MouseListener {
 
     private static MouseListener instance;  // this class is a singleton
 
-    private double scrollX, scrollY;
-    private double posX, posY, prevX, prevY;
+    private double scrollX, scrollY = 0;
+    private double posX, posY, prevX, prevY = 0;
 
     private static final int N_BUTTONS = 3;
     private final boolean[] pressedButtons = new boolean[N_BUTTONS];
 
-    private boolean isDragging;
+    private boolean dragging = false;
 
     private MouseListener() {
-        scrollX = scrollY = 0;
-        posX = posY = prevY = prevX = 0;
     }
 
     public static MouseListener getInstance() {
@@ -38,7 +36,7 @@ public class MouseListener {
         instance.posY = posY;
 
         // if any of the buttons are pressed, then it's dragging
-        instance.isDragging = IntStream.range(0, instance.pressedButtons.length)
+        instance.dragging = IntStream.range(0, instance.pressedButtons.length)
                 .mapToObj(idx -> instance.pressedButtons[idx])
                 .reduce(Boolean::logicalOr)
                 .orElse(false);
@@ -55,7 +53,7 @@ public class MouseListener {
             instance.pressedButtons[button] = true;
         } else if (action == GLFW_RELEASE) {
             instance.pressedButtons[button] = false;
-            instance.isDragging = false;
+            instance.dragging = false;
         }
     }
 
@@ -91,7 +89,7 @@ public class MouseListener {
     }
 
     public static boolean isDragging() {
-        return getInstance().isDragging;
+        return getInstance().dragging;
     }
 
     public static boolean isPressed(int button) {

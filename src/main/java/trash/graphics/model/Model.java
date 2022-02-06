@@ -1,4 +1,4 @@
-package trash.graphics;
+package trash.graphics.model;
 
 import java.util.List;
 
@@ -14,8 +14,7 @@ public class Model {
         this(List.of(mesh));
     }
 
-    public void draw(Shader shader) {
-        shader.bind();
+    public void draw() {
         meshes.forEach(Mesh::draw);
     }
 }

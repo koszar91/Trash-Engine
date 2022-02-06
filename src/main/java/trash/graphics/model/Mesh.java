@@ -1,4 +1,4 @@
-package trash.graphics;
+package trash.graphics.model;
 
 import org.lwjgl.BufferUtils;
 

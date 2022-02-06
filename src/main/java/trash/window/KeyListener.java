@@ -33,7 +33,7 @@ public class KeyListener {
     }
 
     // interface
-    public static boolean isPressed(int key) {
+    public boolean isPressed(int key) {
         if (!(0 <= key && key < N_KEYS)) {
             throw new IllegalArgumentException(String.format("No such key: %d", key));
         }
